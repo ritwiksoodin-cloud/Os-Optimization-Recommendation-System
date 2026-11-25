@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OS Optimization Recommendation System</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<section class="startup" id="startup" hidden>
+  <h1>Start OS Monitor</h1>
+  <p>In the project folder, run <code>python app.py</code> from your Ubuntu terminal. Keep it open while you use the dashboard.</p>
+  <p><a href="http://127.0.0.1:8080">Open the dashboard at 127.0.0.1:8080</a></p>
+</section>
+<header id="site-header">
+  <div class="shell mast"><a href="/">OS Monitor</a><nav aria-label="Dashboard sections"><a href="&num;monitor">Monitor</a><a href="&num;scheduler">Scheduler</a></nav><span id="live">Connecting…</span></div>
+</header>
+<main class="shell" id="dashboard">
+  <section id="monitor">
+    <div class="intro">
+      <h1>OS Optimization Recommendation System</h1>
+      <p>Live Linux measurements</p>
+    </div>
+    <div class="metrics" id="metrics" aria-label="Latest system measurements"></div>
+    <div class="split">
+      <section class="panel">
+        <div class="panel-title"><h2>CPU and memory history</h2><span>Last 60 samples</span></div>
+        <div class="legend"><span class="cpu">CPU</span><span class="ram">Memory</span></div>
+        <canvas id="trend" role="img" aria-label="CPU and memory usage over time"></canvas>
+        <dl id="io"></dl>
+      </section>
+      <section class="panel">
+        <div class="panel-title"><h2>Recommendations</h2></div>
+        <p id="window">Waiting for measurements…</p>
+        <div id="recommendations" aria-live="polite"></div>
+      </section>
+    </div>
+    <section class="panel process-panel">
+      <div class="panel-title"><h2>Top processes</h2><span>CPU shown per logical core</span></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>PID</th><th>Process</th><th>CPU</th><th>Resident memory</th></tr></thead>
+        <tbody id="processes"></tbody></table>
+      </div>
+    </section>
+  </section>
+  <section id="scheduler">
+    <div class="intro"><h2>CPU scheduling simulator</h2><p>Compare FCFS, non-preemptive SJF, and Round Robin on the same single-CPU workload.</p></div>
+    <div class="split schedule">
+      <form class="panel" id="workload">
+        <div class="panel-title"><h3>Workload</h3><button id="add" class="secondary" type="button">Add process</button></div>
+        <div class="job headings"><span>Process</span><span>Arrival</span><span>Burst</span><span></span></div>
+        <div id="jobs"></div>
+        <label class="quantum">Round Robin quantum <input id="quantum" type="number" min="1" max="1000" value="2" required></label>
+        <button type="submit">Compare algorithms</button>
+        <p id="error" role="alert"></p>
+      </form>
+      <section class="panel" id="results" aria-live="polite"><h3>Simulation results</h3><p>Run a comparison to see the results.</p></section>
+    </div>
+  </section>
+</main>
+<script>
+if (location.protocol === "file:") {
+  document.getElementById("site-header").hidden = true;
+  document.getElementById("dashboard").hidden = true;
+  document.getElementById("startup").hidden = false;
+} else {
+  const script = document.createElement("script");
+  script.src = "dashboard.js";
+  document.body.append(script);
+}
+</script>
+</body>
+</html>
