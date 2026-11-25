@@ -55,3 +55,22 @@ Capstone demo
 4. Run the scheduler with the prefilled workload. Expand each timeline and change the Round Robin quantum to show how the response and waiting times change.
 
 The project keeps collection and rules in `monitor.py`, scheduling in `scheduler.py`, and the local server and browser frontend in `app.py` and `web/`.
+
+Demo Screenshots
+----------------
+
+**Live dashboard**
+
+![Live Ubuntu resource measurements](screenshots/dashboard.png)
+
+**Top processes**
+
+![Processes ranked by observed CPU usage](screenshots/top-processes.png)
+
+**CPU stress test**
+
+![Recommendation triggered by sustained CPU load](screenshots/cpu-stress-test.png)
+
+**CPU scheduling simulator**
+
+![FCFS, SJF, and Round Robin results and timelines](screenshots/scheduling-simulator.png)
